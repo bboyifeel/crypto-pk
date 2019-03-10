@@ -1,3 +1,4 @@
+#include "pk_math_api.h"
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -24,7 +25,7 @@ void printFactorizationMap(std::map<int,int> m)
 	std::cout << std::endl;
 }
 
-std::map<int,int> factor(int _n)
+std::map<int,int> factor(int _n, bool _log)
 {
 	std::map<int,int> 	factorization;
 	
@@ -43,9 +44,11 @@ std::map<int,int> factor(int _n)
 			prime[j] = false;
 		}
 	}
-	//printBoolVectro(prime);
+	
+	if(_log)
+		printBoolVectro(prime);
 
-	int 				divisor = 0;
+	int divisor = 0;
 	for (int i = 2; i < prime.size(); i++)
 	{
 		if(!prime[i])
@@ -56,7 +59,9 @@ std::map<int,int> factor(int _n)
 		{
 			if(divisor == i && factorization.find(divisor) == factorization.end())
 			{
-				//std::cout << _n << " is divisible by " << divisor << std::endl;
+				if(_log)
+					std::cout << _n << " is divisible by " << divisor << std::endl;
+				
 				factorization[i] = 0;
 			}
 			
@@ -67,11 +72,9 @@ std::map<int,int> factor(int _n)
 	return factorization;
 }
 
-int main()
+void factorTest()
 {
-	int a = 0;
+	int a = 150;
 	std::map<int,int> factorization = factor(a);
 	printFactorizationMap(factorization);
-
-	return 0;
 }
