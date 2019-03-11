@@ -3,7 +3,7 @@
 
 #include <map>
 
-int 				gcd(int a, int b, bool log = false);
+int 				gcd(int a, int b);
 
 std::map<int,int> 	factor(int n, bool log = false);
 
@@ -16,7 +16,7 @@ int 				inverse(int a, int n);
 int 				restechinois(int a1, int n1, int a2, int n2);
 
 // Euler's function. Returns -1 if a < 1
-int euler(int a);
+int 				euler(int a);
 
 void 	gcdTest();
 void 	factorTest();

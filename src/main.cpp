@@ -4,6 +4,6 @@
 
 int main()
 {
-	gcdTest();
+	eulerTest();
 	return 0;
 }

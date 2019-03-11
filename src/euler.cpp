@@ -3,16 +3,23 @@
 #include <cmath>
 
 // Euler's function. Returns -1 if a < 1
-int euler(int a)
+int euler(int n)
 {
-	if (a < 1)
+	if (n < 1)
 		return -1;
-	return 0;
+
+	unsigned int result = 1;
+	for (int i = 2; i < n; i++)
+	{
+		if(gcd(n,i) == 1)
+			result++;
+	}
+	return result;
 }
 
 void eulerTest()
 {
-	int a = 0;
+	int a = 10;
 	int eulerVal = euler(a);
 	if (eulerVal != -1)
 	{
