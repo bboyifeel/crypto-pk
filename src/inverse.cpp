@@ -6,7 +6,7 @@
 // returns -1 in case if it doesn't exist
 int inverse(int _a, int _n)
 {
-	if (gcdEuclid(_a, _n) != 1)
+	if (gcd(_a, _n) != 1)
 		return -1;
 
 	int u[3] = { 1, 0, 0};

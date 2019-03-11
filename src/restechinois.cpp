@@ -6,7 +6,7 @@
 // returns -1 in case if gcd(n1,n2) != 1
 int restechinois(int a, int p, int b, int q)
 {
-	if (gcdEuclid(p, q) != 1)
+	if (gcd(p, q) != 1)
 		return -1;
 
 	int z = 0;

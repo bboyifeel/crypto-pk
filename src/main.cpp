@@ -4,6 +4,6 @@
 
 int main()
 {
-	restechinoisTest();
+	gcdTest();
 	return 0;
 }

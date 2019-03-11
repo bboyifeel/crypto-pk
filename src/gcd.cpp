@@ -10,7 +10,7 @@ void printEuclidsEquasion(int _r[3], int _q)
 	std::cout << _r[2];
 }
 
-int gcdEuclid(int _a, int _b, bool _log)
+int gcd(int _a, int _b, bool _log)
 {
 	if (!_a || !_b)
 		return _a^_b;
@@ -21,7 +21,7 @@ int gcdEuclid(int _a, int _b, bool _log)
 	do
 	{
 		q 		= r[0] / r[1];
-		r[2] 	= r[0] - q * r[1];
+		r[2] 	= r[0] % r[1];
 		
 		
 		if(_log)
@@ -39,11 +39,11 @@ int gcdEuclid(int _a, int _b, bool _log)
 	return std::abs(r[0]);
 }
 
-void gcdEuclidTest()
+void gcdTest()
 {
 	int a = 12;
 	int b = 15;
 	
-	int gcdAB = gcdEuclid(a, b, true);
+	int gcdAB = gcd(a, b, true);
 	std::cout << "gcd(" <<a << "," << b << ") = " << gcdAB << std::endl;
 }
