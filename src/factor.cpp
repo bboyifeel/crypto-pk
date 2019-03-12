@@ -1,41 +1,16 @@
 #include "pk_math_api.h"
-#include <iostream>
-#include <cmath>
-#include <vector>
-#include <bitset>
-#include <map>
 
-void printBoolVectro(std::vector<bool> vec)
-{
-	std::cout << "["; 
-	for(auto item: vec)
-	{
-		std::cout << (item ? 1 : 0);
-	}
-	std::cout << "]";
-	std::cout << std::endl;
-}
-
-void printFactorizationMap(std::map<int,int> m)
-{
-	for (auto const& item: m)
-	{
-		std::cout << "(" << item.first << "," << item.second << ")" << " ";
-	}
-	std::cout << std::endl;
-}
-
-std::map<int,int> factor(int _n, bool _log)
+std::map<int,int> factor(int n)
 {
 	std::map<int,int> 	factorization;
 	
-	if (!_n)
+	if (!n)
 	{
 		factorization[0] = 0;
 		return factorization;
 	}
 
-	std::vector<bool> prime(_n + 1,true);
+	std::vector<bool> prime(n + 1,true);
 	
 	for(int i = 2; i*i < prime.size(); i++)
 	{
@@ -44,9 +19,6 @@ std::map<int,int> factor(int _n, bool _log)
 			prime[j] = false;
 		}
 	}
-	
-	if(_log)
-		printBoolVectro(prime);
 
 	int divisor = 0;
 	for (int i = 2; i < prime.size(); i++)
@@ -55,13 +27,10 @@ std::map<int,int> factor(int _n, bool _log)
 			continue;
 		
 		divisor = i;
-		while((_n / divisor) == ((double)_n / divisor))
+		while((n / divisor) == ((double)n / divisor))
 		{
 			if(divisor == i && factorization.find(divisor) == factorization.end())
 			{
-				if(_log)
-					std::cout << _n << " is divisible by " << divisor << std::endl;
-				
 				factorization[i] = 0;
 			}
 			
@@ -69,12 +38,6 @@ std::map<int,int> factor(int _n, bool _log)
 			divisor *= divisor;
 		}
 	}
-	return factorization;
-}
 
-void factorTest()
-{
-	int a = 150;
-	std::map<int,int> factorization = factor(a);
-	printFactorizationMap(factorization);
+	return factorization;
 }

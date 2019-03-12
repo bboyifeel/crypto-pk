@@ -1,6 +1,4 @@
 #include "pk_math_api.h"
-#include <iostream>
-#include <cmath>
 
 // Euler's function. Returns -1 if a < 1
 int euler(int n)
@@ -15,18 +13,4 @@ int euler(int n)
 			result++;
 	}
 	return result;
-}
-
-void eulerTest()
-{
-	int a = 10;
-	int eulerVal = euler(a);
-	if (eulerVal != -1)
-	{
-		std::cout << "Euler function of " << a << " = " << eulerVal << std::endl;
-	}
-	else
-	{
-		std::cout << "Euler's function accepts values strictly greatter than 0" << std::endl;
-	}
 }

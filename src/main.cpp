@@ -1,9 +1,7 @@
-#include "pk_math_api.h"
-#include <iostream>
-#include <cmath>
+#include "tests.h"
 
 int main()
 {
-	eulerTest();
+	carmicahelNumbersTest();
 	return 0;
 }

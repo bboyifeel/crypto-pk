@@ -1,17 +1,15 @@
 #include "pk_math_api.h"
-#include <iostream>
-#include <cmath>
 
 // multiplicative inverse using Euclid's extended algorithm
 // returns -1 in case if it doesn't exist
-int inverse(int _a, int _n)
+int inverse(int a, int n)
 {
-	if (gcd(_a, _n) != 1)
+	if (gcd(a, n) != 1)
 		return -1;
 
 	int u[3] = { 1, 0, 0};
 
-	int r[3] = { _a, _n, 0};
+	int r[3] = { a, n, 0};
 	int q;
 	
 	do
@@ -30,21 +28,5 @@ int inverse(int _a, int _n)
 	
 	} while(r[1] != 0);
 
-	return u[0] > 0 ? u[0] : _n + u[0]; // equal to if u[0] < 0, then return _n - std::abs(u[0])
-}
-
-void inverseTest()
-{
-	int a = 2;
-	int n = 6;
-	
-	int inverseElement = inverse(a,n);
-	if (inverseElement > 0)
-	{
-		std::cout << "inverse = " << inverseElement << std::endl;
-	}
-	else
-	{
-		std::cout << a << " has no inverse element modulo " << n << std::endl;
-	}
+	return u[0] > 0 ? u[0] : n + u[0]; // equal to if u[0] < 0, then return n - std::abs(u[0])
 }
