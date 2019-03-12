@@ -23,10 +23,12 @@ int 				euler(int a);
 // Carmichael numbers up to n [excluding]
 std::vector<int> 	carmichaelNumbers(int n);
 
+
+bool 				isPrime(int n);
+
+int 				powerModuloN(int b, int p, int n);
 // n has to be composite
 // this function is not checking if number is composit
 bool 				isCarmichaelNumber(int n);
-
-bool 				isPrime(int n);
 
 #endif

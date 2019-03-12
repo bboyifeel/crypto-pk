@@ -19,6 +19,13 @@ void gcdTest()
 	std::cout << "gcd(" <<a << "," << b << ") = " << gcdAB << std::endl;
 }
 
+void factorTest()
+{
+	int a = 150;
+	std::map<int,int> factorization = factor(a);
+	printFactorizationMap(factorization);
+}
+
 void inverseTest()
 {
 	int a = 2;
@@ -58,13 +65,6 @@ void eulerTest()
 	{
 		std::cout << "Euler's function accepts values strictly greatter than 0" << std::endl;
 	}
-}
-
-void factorTest()
-{
-	int a = 100001;
-	std::map<int,int> factorization = factor(a);
-	printFactorizationMap(factorization);
 }
 
 void isCarmicahelNumberTest()
