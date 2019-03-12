@@ -23,18 +23,20 @@ void factorTest()
 {
 	int a = 150;
 	std::map<int,int> factorization = factor(a);
+	std::cout << "factor " << a << std::endl;
 	printFactorizationMap(factorization);
 }
 
 void inverseTest()
 {
-	int a = 2;
-	int n = 6;
+	int a = 5;
+	int n = 7;
 	
 	int inverseElement = inverse(a,n);
 	if (inverseElement > 0)
 	{
-		std::cout << "inverse = " << inverseElement << std::endl;
+		std::cout << "iverse " << a << " " << n << std::endl;
+		std::cout << inverseElement << std::endl;
 	}
 	else
 	{
@@ -50,7 +52,8 @@ void restechinoisTest()
 	int q = 7;
 	
 	int z = restechinois(a,p,b,q);
-	std::cout << "Chinese remainder = " << z << std::endl;
+	std::cout << "restechinois " << a << " " << p << " "<< b << " " << q << std::endl;
+	std::cout << z << std::endl;
 }
 
 void eulerTest()
