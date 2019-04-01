@@ -1,11 +1,24 @@
-#include "pk_math_api.h"
+#include "math_api_pk.h"
 
-void 	gcdTest();
-void 	factorTest();
-void 	inverseTest();
-void 	restechinoisTest();
-void	eulerTest();
-void 	carmicahelNumbersTest();
+namespace tests
+{
+	void 	gcdTest();
 
-void 	isCarmicahelNumberTest();
-void 	isPrimeTest();
+
+	void 	factorTest();
+
+
+	void 	inverseTest();
+
+
+	void 	restechinoisTest();
+
+
+	void	eulerTest();
+
+
+	void 	carmicahelNumbersTest();
+
+
+	void 	isPrimeTest();
+}//namespace tests
