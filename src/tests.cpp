@@ -163,15 +163,15 @@ namespace tests
 	{
 		// little endian
 		unsigned char first[] 	= {0,1,2,3,4,5,6,7,8,9};
-		unsigned char second[]	= {0,1};
+		unsigned char second[]	= {0,1,2,3,4,5,6,7,8,9};
 
 		::bigInt a = {.sign = true, .size = sizeof(first) / sizeof(first[0]), .arr = first};
 		::bigInt b = {.sign = true, .size = sizeof(second) / sizeof(second[0]), .arr = second};
 		::bigInt result = ::bigIntMultiply(a, b);
 		
 		// prints are big endian
-		prints::BigInt(a); 		std::cout << std::endl << " + " << std::endl;
-		prints::BigInt(b); 		std::cout << std::endl << " * " << std::endl;
+		prints::BigInt(a); 		std::cout << std::endl << " * " << std::endl;
+		prints::BigInt(b); 		std::cout << std::endl << " = " << std::endl;
 		prints::BigInt(result);	std::cout << std::endl;
 		delete result.arr;
 	}
@@ -179,7 +179,7 @@ namespace tests
 
 	void 		bigIntFactorial()
 	{
-		prints::BigInt(::bigIntFactorial(30));
+		prints::BigInt(::bigIntFactorial(40));
 		std::cout << std::endl;
 	}
 
