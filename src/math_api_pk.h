@@ -51,7 +51,7 @@ std::vector<int> 	carmichaelNumbers(int n);
 /***********************************
 	Power Modulo N [p inclusive]
 ***********************************/
-int 				powerModuloN(int b, int p, int n);
+int 				expmod(int b, int p, int n);
 
 
 /***********************************

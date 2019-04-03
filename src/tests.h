@@ -38,6 +38,9 @@ namespace tests
 
 	void 	bigIntFactorial();
 
+
+	void 	expmod();
+
 }// namespace tests
 
 #endif // CRYPTO_TESTS

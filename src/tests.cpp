@@ -183,4 +183,11 @@ namespace tests
 		std::cout << std::endl;
 	}
 
+
+	void 		expmod()
+	{
+		std::cout << "expmod 2342 6762 9343 " << std::endl;
+		std::cout << ::expmod(2342, 6762, 9343) << std::endl;
+	}
+
 }//namespace tests

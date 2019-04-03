@@ -156,7 +156,7 @@ int inverse(int a, int n)
 /***********************************
 	Power Modulo N [p inclusive]
 ***********************************/
-int powerModuloN(int b, int p, int n)
+int expmod(int b, int p, int n)
 {
 	int result = b;
 	for (int i = 2; i <= p; i++)
@@ -199,7 +199,7 @@ bool isCarmichaelNumber(int n)
 	{
 		if (gcd(n,i) == 1)
 		{
-			if (powerModuloN(i,n,n) != i)
+			if (expmod(i,n,n) != i)
 			{
 				return false;
 			}

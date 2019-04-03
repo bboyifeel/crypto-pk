@@ -18,6 +18,7 @@ void lab2()
 	tests::FibonacciSequence();	std::cout << std::endl;
 	tests::bigIntMultiply();	std::cout << std::endl;
 	tests::bigIntFactorial();	std::cout << std::endl;
+	tests::expmod();			std::cout << std::endl;
 }
 
 
