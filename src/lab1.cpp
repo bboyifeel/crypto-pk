@@ -116,6 +116,7 @@ int restechinois(int a, int p, int b, int q)
 	return z % (p*q);
 }
 
+
 /***********************************
 	Multiplicative inverse (using Euclid's extended algorithm)
 

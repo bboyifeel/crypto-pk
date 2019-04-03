@@ -1,0 +1,176 @@
+#include "math_api_pk.h"
+#include <algorithm>
+#include <iostream>
+
+
+/***********************************
+	Trims Big Int
+***********************************/
+void bigIntTrim(bigInt& item)
+{
+	while(item.size > 0 && !item.arr[item.size-1])
+	{
+		item.size--;
+	}
+}
+
+/***********************************
+	Compares a and b (unsigned)
+	returns true if a >= b
+***********************************/
+bool bigIntIsEqualBigger(bigInt a, bigInt b)
+{
+	bigIntTrim(a);
+	bigIntTrim(b);
+
+	if (a.size > b.size)
+	{
+		return true;
+	}
+	else if (a.size < b.size)
+	{
+		return false;
+	}
+
+	// case a.size == b.size
+	for (int i = a.size - 1; i > 0; i--)
+		if (a.arr[i] < b.arr[i])
+			return false;
+
+	return true;
+}
+
+
+/***********************************
+	Addition of two Big Integers
+***********************************/
+bigInt bigIntAddition(bigInt a, bigInt b)
+{
+	bigInt result;
+	
+	bigIntTrim(a);
+	bigIntTrim(b);
+
+	if (!a.sign ^ b.sign)
+	{
+		result = operationAddition(a,b);
+		result.sign = a.sign;
+	}
+	else
+	{
+		if (bigIntIsEqualBigger(a,b))
+		{
+			result = operationSubtraction(a,b);
+			result.sign = a.sign;
+		}
+		else
+		{
+			result = operationSubtraction(b,a);
+			result.sign = b.sign;
+		}
+	}
+	
+	return result;
+}
+
+
+/***********************************
+	Addition of two positive Big Integers
+***********************************/
+bigInt operationAddition(bigInt a, bigInt b)
+{
+	if (a.size < b.size)
+	{
+		return operationAddition(b, a);
+	}
+
+	unsigned short 	size 	= a.size + 1;
+	unsigned char* 	arr		= new unsigned char[size];
+	std::fill_n(arr, size, 0); 
+
+	int carry 	= 0;
+	char tmp;
+
+	for (int i = 0; i < b.size; i++)
+	{
+		tmp 	= a.arr[i] + b.arr[i] + carry;
+		carry 	= tmp / 10;
+		arr[i] 	= tmp % 10;
+	}
+
+	for (int i = b.size; i < a.size; i++)
+	{
+		tmp 	= a.arr[i] + carry;
+		carry 	= tmp / 10;
+		arr[i] 	= tmp % 10;
+	}
+
+	arr[size - 1] = carry;
+
+	bigInt 			result 	= {.sign = true, .size = size, .arr = arr};
+		
+	return result;
+}
+
+
+/***********************************
+	Subtraction of two positive Big Integers
+	a > b
+***********************************/
+bigInt operationSubtraction(bigInt a, bigInt b)
+{
+	unsigned short 	size 	= a.size + 1;
+	unsigned char* 	arr		= new unsigned char[size];
+	std::fill_n(arr, size, 0); 
+
+	int carry 	= 0;
+	char tmp;
+
+	for (int i = 0; i < b.size; i++)
+	{
+		tmp 	= a.arr[i] - b.arr[i] + carry;
+		carry 	= tmp / 10;
+		arr[i] 	= tmp % 10;
+	}
+
+	for (int i = b.size; i < a.size; i++)
+	{
+		tmp 	= a.arr[i] + carry;
+		carry 	= tmp / 10;
+		arr[i] 	= tmp % 10;
+	}
+
+	arr[size - 1] = carry;
+
+	bigInt 			result 	= {.sign = true, .size = size, .arr = arr};
+		
+	return result;
+}
+
+
+/***********************************
+	Compares a Fibonacci term number n
+	n > 1
+***********************************/
+bigInt 		FibonacciSequence(unsigned int n)
+{
+	unsigned char first[] = {1};
+	unsigned char second[] = {1};
+	
+	bigInt u0 = {.sign = true, .size = sizeof(first) / sizeof(first[0]), .arr = first};
+	bigInt u1 = {.sign = true, .size = sizeof(second) / sizeof(second[0]), .arr = second};
+	
+	bigInt u2;
+
+	for (int i = 0; i < n - 1; i++)
+	{
+		u2 = operationAddition(u1, u0);
+		bigIntTrim(u2);
+
+		u0 = u1;
+		u1 = u2;
+	}
+	delete u0.arr;
+
+	return u1;
+}

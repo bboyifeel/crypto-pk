@@ -59,4 +59,48 @@ int 				powerModuloN(int b, int p, int n);
 ***********************************/
 bool 				isPrime(int n);
 
+
+/***********************************
+	bigInt
+***********************************/
+struct bigInt
+{
+	bool			sign;
+	unsigned short	size;
+	unsigned char*	arr;
+};
+
+
+/***********************************
+	Addition of two Big Integers
+***********************************/
+bigInt 		bigIntAddition(bigInt a, bigInt b);
+
+
+/***********************************
+	Addition of two positive Big Integers
+***********************************/
+bigInt 		operationAddition(bigInt a, bigInt b);
+
+
+/***********************************
+	Subtraction of two positive Big Integers
+	a > b
+***********************************/
+bigInt 		operationSubtraction(bigInt a, bigInt b);
+
+
+/***********************************
+	Compares a and b
+	returns true if a >= b
+***********************************/
+bool 		bigIntIsEqualBigger(bigInt a, bigInt b);
+
+
+typedef void(*printFunc)(bigInt);
+/***********************************
+	Compares a Fibonacci term number n
+***********************************/
+bigInt 		FibonacciSequence(unsigned int n);
+
 #endif //CRYPTO_MATH_API_PK

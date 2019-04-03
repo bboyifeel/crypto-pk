@@ -1,24 +1,37 @@
+#ifndef CRYPTO_TESTS
+#define CRYPTO_TESTS
+
 #include "math_api_pk.h"
 
 namespace tests
 {
-	void 	gcdTest();
+
+	void 	gcd();
 
 
-	void 	factorTest();
+	void 	factor();
 
 
-	void 	inverseTest();
+	void 	inverse();
 
 
-	void 	restechinoisTest();
+	void 	restechinois();
 
 
-	void	eulerTest();
+	void	euler();
 
 
-	void 	carmicahelNumbersTest();
+	void 	carmicahelNumbers();
 
 
-	void 	isPrimeTest();
-}//namespace tests
+	void 	isPrime();
+
+
+	void 	bigIntAddition();
+
+
+	void 	FibonacciSequence();
+
+}// namespace tests
+
+#endif // CRYPTO_TESTS

@@ -2,25 +2,23 @@
 #include <iostream>
 #include "tests.h"
 
-
-template<class T>
-void 	printVector(std::vector<T> vec)
+namespace prints
 {
-	std::cout << "[ "; 
-	for(auto item: vec)
+
+	template<class T>
+	void 	Vector(std::vector<T> vec)
 	{
-		std::cout << item << " ";
-	}
-	std::cout << "]";
-	std::cout << std::endl;
-}
+		std::cout << "[ "; 
+		for(auto item: vec)
+		{
+			std::cout << item << " ";
+		}
+		std::cout << "]";
+		std::cout << std::endl;
+	}	
 	
 	
-namespace tests
-{
-	
-
-	void printFactorizationMap(std::map<int,int> m)
+	void FactorizationMap(std::map<int,int> m)
 	{
 		for (auto const& item: m)
 		{
@@ -30,31 +28,50 @@ namespace tests
 	}
 	
 	
-	void gcdTest()
+	void	BigInt(::bigInt item)
+	{
+		if (!item.size)
+		{
+			std::cout << 0;
+			return;
+		}
+
+		std::cout << (item.sign ? "" : "-");
+		for (int i = item.size - 1; i >= 0; i--)
+			std::cout << +item.arr[i];
+	}
+
+}// namespace prints
+
+	
+namespace tests
+{
+		
+	void gcd()
 	{
 		int a = 12;
 		int b = 15;
 		
-		int gcdAB = gcd(a, b);
+		int gcdAB = ::gcd(a, b);
 		std::cout << "gcd(" <<a << "," << b << ") = " << gcdAB << std::endl;
 	}
 	
 	
-	void factorTest()
+	void factor()
 	{
 		int a = 150;
-		std::map<int,int> factorization = factor(a);
+		std::map<int,int> factorization = ::factor(a);
 		std::cout << "factor " << a << std::endl;
-		printFactorizationMap(factorization);
+		prints::FactorizationMap(factorization);
 	}
 	
 	
-	void inverseTest()
+	void inverse()
 	{
 		int a = 5;
 		int n = 7;
 		
-		int inverseElement = inverse(a,n);
+		int inverseElement = ::inverse(a,n);
 		if (inverseElement > 0)
 		{
 			std::cout << "iverse " << a << " " << n << std::endl;
@@ -67,23 +84,23 @@ namespace tests
 	}
 	
 	
-	void restechinoisTest()
+	void restechinois()
 	{
 		int a = 4;
 		int p = 5;
 		int b = 3;
 		int q = 7;
 		
-		int z = restechinois(a,p,b,q);
+		int z = ::restechinois(a,p,b,q);
 		std::cout << "restechinois " << a << " " << p << " "<< b << " " << q << std::endl;
 		std::cout << z << std::endl;
 	}
 	
 	
-	void eulerTest()
+	void euler()
 	{
 		int a = 10;
-		int eulerVal = euler(a);
+		int eulerVal = ::euler(a);
 		if (eulerVal != -1)
 		{
 			std::cout << "Euler function of " << a << " = " << eulerVal << std::endl;
@@ -95,24 +112,48 @@ namespace tests
 	}
 	
 	
-	void carmicahelNumbersTest()
+	void carmicahelNumbers()
 	{
 		int n = 10000;
 		std::cout << "Carmichael Numbers up to " << n << std::endl;
-		printVector(carmichaelNumbers(n));
+		prints::Vector(::carmichaelNumbers(n));
 		std::cout << std::endl;
 	}
 	
 	
-	void isPrimeTest()
+	void isPrime()
 	{
 		int n = 13;
-		std::cout << n << " is Prime? " << isPrime(n) << std::endl;
+		std::cout << n << " is Prime? " << ::isPrime(n) << std::endl;
 		n = 14;
-		std::cout << n << " is Prime? " << isPrime(n) << std::endl;
+		std::cout << n << " is Prime? " << ::isPrime(n) << std::endl;
 		n = 561;
-		std::cout << n << " is Prime? " << isPrime(n) << std::endl;
+		std::cout << n << " is Prime? " << ::isPrime(n) << std::endl;
 		n = 100001;
-		std::cout << n << " is Prime? " << isPrime(n) << std::endl;
+		std::cout << n << " is Prime? " << ::isPrime(n) << std::endl;
 	}
+
+
+	void bigIntAddition()
+	{
+		// little endian
+		unsigned char first[] 	= {0,1,2,3,4,5,6,7,8,9};
+		unsigned char second[]	= {0,1,2,3,4,5,6,7,8,9};
+
+		::bigInt a = {.sign = true, .size = sizeof(first) / sizeof(first[0]), .arr = first};
+		::bigInt b = {.sign = true, .size = sizeof(second) / sizeof(second[0]), .arr = second};
+		::bigInt result = ::bigIntAddition(a, b);
+		
+		// prints are big endian
+		prints::BigInt(a); std::cout << std::endl << " + " << std::endl;
+		prints::BigInt(b); std::cout << std::endl << " = " << std::endl;
+		prints::BigInt(result); std::cout << std::endl;
+	}
+
+
+	void 	FibonacciSequence()
+	{
+		prints::BigInt(::FibonacciSequence(101)); std::cout << std::endl;
+	}
+
 }//namespace tests
