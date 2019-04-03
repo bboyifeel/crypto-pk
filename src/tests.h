@@ -35,6 +35,9 @@ namespace tests
 
 	void 	bigIntMultiply();
 
+
+	void 	bigIntFactorial();
+
 }// namespace tests
 
 #endif // CRYPTO_TESTS

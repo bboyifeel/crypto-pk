@@ -17,6 +17,7 @@ void lab2()
 	tests::bigIntAddition();	std::cout << std::endl;
 	tests::FibonacciSequence();	std::cout << std::endl;
 	tests::bigIntMultiply();	std::cout << std::endl;
+	tests::bigIntFactorial();	std::cout << std::endl;
 }
 
 

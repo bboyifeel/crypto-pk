@@ -176,4 +176,11 @@ namespace tests
 		delete result.arr;
 	}
 
+
+	void 		bigIntFactorial()
+	{
+		prints::BigInt(::bigIntFactorial(30));
+		std::cout << std::endl;
+	}
+
 }//namespace tests

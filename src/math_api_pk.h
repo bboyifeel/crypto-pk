@@ -109,4 +109,10 @@ bigInt 		FibonacciSequence(unsigned int n);
 ***********************************/
 bigInt 		bigIntMultiply(bigInt a, bigInt b);
 
+
+/***********************************
+	Factorial of Big Integers
+***********************************/
+bigInt 		bigIntFactorial(unsigned int n);
+
 #endif //CRYPTO_MATH_API_PK

@@ -206,3 +206,55 @@ bigInt 		bigIntMultiply(bigInt a, bigInt b)
 
 	return result;
 }
+
+
+/***********************************
+	Converter Int to Big Int
+***********************************/
+bigInt intToBigInt(unsigned int n)
+{
+	unsigned short 	size = 0;
+	unsigned int 	copy = n;
+	
+	while(copy)
+	{
+		copy /=10;
+		size++;
+	}
+
+	bigInt result = {.sign = (n >= 0) ? true : false,
+					.size = size,
+					.arr = new unsigned char[size]};
+	std::fill_n(result.arr, size, 0);
+
+	for (int i = 0; i < size; i++)
+	{
+		result.arr[i] = n % 10;
+		n /= 10;
+	}
+
+	return result;
+}
+
+
+/***********************************
+	Factorial
+***********************************/
+bigInt 		bigIntFactorial(unsigned int n)
+{
+	bigInt result;
+
+	bigInt tmpResult = intToBigInt(n);
+	bigInt nInBigInt;
+
+	for (int i = 1; i < n - 1; i++)
+	{
+		nInBigInt 	= intToBigInt(n - i);
+		result 		= bigIntMultiply(tmpResult, nInBigInt);
+		delete tmpResult.arr;
+		delete nInBigInt.arr;
+		tmpResult	= result;
+	}
+	
+	return result;
+}
