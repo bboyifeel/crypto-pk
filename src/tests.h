@@ -32,6 +32,9 @@ namespace tests
 
 	void 	FibonacciSequence();
 
+
+	void 	bigIntMultiply();
+
 }// namespace tests
 
 #endif // CRYPTO_TESTS

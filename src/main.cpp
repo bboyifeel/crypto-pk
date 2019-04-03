@@ -15,7 +15,8 @@ void lab1()
 void lab2()
 {
 	tests::bigIntAddition();	std::cout << std::endl;
-	tests::FibonacciSequence();
+	tests::FibonacciSequence();	std::cout << std::endl;
+	tests::bigIntMultiply();	std::cout << std::endl;
 }
 
 

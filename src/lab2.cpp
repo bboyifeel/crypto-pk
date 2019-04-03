@@ -109,6 +109,7 @@ bigInt operationAddition(bigInt a, bigInt b)
 
 	bigInt 			result 	= {.sign = true, .size = size, .arr = arr};
 		
+	bigIntTrim(result);
 	return result;
 }
 
@@ -143,7 +144,7 @@ bigInt operationSubtraction(bigInt a, bigInt b)
 	arr[size - 1] = carry;
 
 	bigInt 			result 	= {.sign = true, .size = size, .arr = arr};
-		
+	bigIntTrim(result);
 	return result;
 }
 
@@ -173,4 +174,35 @@ bigInt 		FibonacciSequence(unsigned int n)
 	delete u0.arr;
 
 	return u1;
+}
+
+
+/***********************************
+	Multiplication of Big Integers
+***********************************/
+bigInt 		bigIntMultiply(bigInt a, bigInt b)
+{
+	int size = a.size + b.size;
+	bigInt result = {.sign = !a.sign ^ b.sign,
+					 .size = static_cast<unsigned short>(size),
+					 .arr = new unsigned char[size]};
+	std::fill_n(result.arr, result.size, 0);
+
+	int carry 	= 0;
+	int tmp		= 0;
+	for (int i = 0; i < a.size; i++)
+	{
+		carry = 0;
+		for (int j = 0; j < b.size; j++)
+		{
+			tmp 			= a.arr[i] * b.arr[j] + result.arr[i+j] + carry;
+			carry			= tmp / 10;
+			result.arr[i+j] = tmp % 10;
+		}
+		result.arr[i + b.size] = carry;
+	}
+
+	bigIntTrim(result);
+
+	return result;
 }

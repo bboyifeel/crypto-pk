@@ -103,4 +103,10 @@ typedef void(*printFunc)(bigInt);
 ***********************************/
 bigInt 		FibonacciSequence(unsigned int n);
 
+
+/***********************************
+	Multiplication of two Big Integers
+***********************************/
+bigInt 		bigIntMultiply(bigInt a, bigInt b);
+
 #endif //CRYPTO_MATH_API_PK
