@@ -41,6 +41,10 @@ void lab3()
 	std::cout << "Message: " 	<< m 			<< std::endl;
 	std::cout << "Cyphertext: "	<< c 			<< std::endl;
 	std::cout << "Decrypted: " 	<< decrypted 	<< std::endl;
+
+
+	std::cout << "\nPrime test:" << std::endl;
+	std::cout << p << " is prime? " << isPrimeFermat(p) << std::endl;
 }
 
 
