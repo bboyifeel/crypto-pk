@@ -5,13 +5,13 @@
 
 	Returns -1 if a < 1
 ***********************************/
-int euler(int n)
+int euler(uint64_t n)
 {
 	if (n < 1)
 		return -1;
 
 	unsigned int result = 1;
-	for (int i = 2; i < n; i++)
+	for (uint64_t i = 2; i < n; i++)
 	{
 		if(gcd(n,i) == 1)
 			result++;
@@ -89,7 +89,7 @@ std::map<int,int> factor(int n)
 /***********************************
 	GCD
 ***********************************/
-int gcd(int a, int b)
+int gcd(uint64_t a, uint64_t b)
 {
 	if(b == 0)
 		return a;
@@ -122,48 +122,56 @@ int restechinois(int a, int p, int b, int q)
 
 	returns -1 in case if it doesn't exist
 ***********************************/
-int inverse(int a, int n)
+uint64_t inverse(uint64_t a, uint64_t m)
 {
-	if (gcd(a, n) != 1)
+	if (gcd(a, m) != 1)
 		return -1;
 
-	int u[3] = { 1, 0, 0};
-
-	int r[3] = { a, n, 0};
-	int q;
+	uint64_t m0 = m; 
+	uint64_t y = 0, x = 1; 
+  
+	if (m == 1)
+		return 0; 
 	
-	do
+	while (a > 1) 
 	{
-		q 	 = r[0] / r[1];
-	
-		u[2] = u[0] - q * u[1];
-		r[2] = r[0] - q * r[1];
-
-		u[0] = u[1];
-		u[1] = u[2];
-
-		r[0] = r[1];
-		r[1] = r[2];
-		r[2] = 0;
-	
-	} while(r[1] != 0);
-
-	return u[0] > 0 ? u[0] : n + u[0];
-	// equal to if u[0] < 0, then return n - std::abs(u[0])
+		// q is quotient 
+		uint64_t q = a / m; 
+		uint64_t t = m; 
+  
+		// m is remainder now, process same as 
+		// Euclid's algo 
+		m = a % m, a = t; 
+		t = y; 
+  
+		// Update y and x 
+		y = x - q * y; 
+		x = t; 
+	} 
+  
+	// Make x positive 
+	if (x < 0) 
+	   x += m0; 
+  
+	return x; 
 }
 
 
 /***********************************
 	Power Modulo N [p inclusive]
 ***********************************/
-int expmod(int b, int p, int n)
+uint64_t expmod(uint64_t base, uint64_t exponent, uint64_t modulus)
 {
-	int result = b;
-	for (int i = 2; i <= p; i++)
+	uint64_t result = 1;
+
+	while (exponent > 0)
 	{
-		result *= b;
-		result %= n;
+		if (exponent % 2 == 1)
+			result = (result * base) % modulus;
+		exponent = exponent >> 1;
+		base = (base * base) % modulus;
 	}
+
 	return result;
 }
 
@@ -171,19 +179,27 @@ int expmod(int b, int p, int n)
 /***********************************
 	IsPrime
 ***********************************/
-bool isPrime(int n)
+bool isPrime(int num)
 {
-	std::vector<bool> prime(n + 1, true);
-	
-	for(int i = 2; i*i < prime.size(); i++)
+	if (num <= 3)
 	{
-		for(int j = i*i; j < prime.size(); j += i)
-		{
-			prime[j] = false;
-		}
+		return num > 1;
 	}
-
-	return prime[n];
+	else if (num % 2 == 0 || num % 3 == 0)
+	{
+		return false;
+	}
+	else
+	{
+		for (int i = 5; i * i <= num; i += 2)
+		{
+			if (num % i == 0 || num % (i + 2) == 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 }
 
 

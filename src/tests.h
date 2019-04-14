@@ -3,6 +3,11 @@
 
 #include "math_api_pk.h"
 
+namespace prints
+{
+	void	BigInt(::bigInt item);
+}
+
 namespace tests
 {
 
@@ -40,6 +45,15 @@ namespace tests
 
 
 	void 	expmod();
+
+
+	void 	bigIntToInt();
+
+
+	void	bigIntRightShift();
+
+
+	void 	bigIntModulus();
 
 }// namespace tests
 

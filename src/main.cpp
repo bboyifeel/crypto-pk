@@ -1,4 +1,5 @@
 #include "tests.h"
+#include "rsa_light.h"
 #include <iostream>
 
 void lab1()
@@ -22,8 +23,29 @@ void lab2()
 }
 
 
+void lab3()
+{
+	uint64_t p;
+	uint64_t q;
+	uint64_t e;
+	uint64_t d;
+	int length = 30;
+	keygen(p, q, e, d, length);
+
+	uint64_t n 			= p * q;
+
+	uint64_t m 			= 123452;
+	uint64_t c 			= RSAencrypt(m, e, n);
+	uint64_t decrypted 	= RSAdecrypt(c, d, n);
+
+	std::cout << "Message: " 	<< m 			<< std::endl;
+	std::cout << "Cyphertext: "	<< c 			<< std::endl;
+	std::cout << "Decrypted: " 	<< decrypted 	<< std::endl;
+}
+
+
 int main()
 {
-	lab2();
+	lab3();
 	return 0;
 }

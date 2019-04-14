@@ -9,7 +9,7 @@
 /***********************************
 	GCD
 ***********************************/
-int 				gcd(int a, int b);
+int 				gcd(uint64_t a, uint64_t b);
 
 
 /***********************************
@@ -23,7 +23,7 @@ std::map<int,int> 	factor(int n);
 
 	returns -1 in case if it doesn't exist
 ***********************************/
-int 				inverse(int a, int n);
+uint64_t 			inverse(uint64_t a, uint64_t n);
 
 
 /***********************************
@@ -39,7 +39,7 @@ int 				restechinois(int a1, int n1, int a2, int n2);
 
 	Returns -1 if a < 1
 ***********************************/
-int 				euler(int a);
+int 				euler(uint64_t a);
 
 
 /***********************************
@@ -49,9 +49,9 @@ std::vector<int> 	carmichaelNumbers(int n);
 
 
 /***********************************
-	Power Modulo N [p inclusive]
+	Power Modulo N [e inclusive]
 ***********************************/
-int 				expmod(int b, int p, int n);
+uint64_t 			expmod(uint64_t b, uint64_t e, uint64_t n);
 
 
 /***********************************
@@ -114,5 +114,36 @@ bigInt 		bigIntMultiply(bigInt a, bigInt b);
 	Factorial of Big Integers
 ***********************************/
 bigInt 		bigIntFactorial(unsigned int n);
+
+
+/***********************************
+	Converter Int to Big Int
+***********************************/
+bigInt 		intToBigInt(uint64_t n);
+
+
+/***********************************
+	Converter Int to Big Int
+***********************************/
+uint64_t 	bigIntToInt(bigInt a);
+
+
+/***********************************
+	Power Modulo N [e inclusive]
+***********************************/
+bigInt 		bigIntExpmod(bigInt b, bigInt e, bigInt n);
+
+
+/***********************************
+	Division by 2
+***********************************/
+void 		bigIntRightShift(bigInt& e);
+
+
+/***********************************
+	Big Int Mod
+	// for positive only
+***********************************/
+bigInt 		bigIntMod(bigInt e, bigInt modulus);
 
 #endif //CRYPTO_MATH_API_PK

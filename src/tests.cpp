@@ -64,14 +64,15 @@ namespace tests
 		std::cout << "factor " << a << std::endl;
 		prints::FactorizationMap(factorization);
 	}
-	
+
 	
 	void inverse()
 	{
-		int a = 5;
-		int n = 7;
+		uint64_t a = 12;
+		uint64_t n = 17;
+
+		uint64_t inverseElement = ::inverse(a,n);
 		
-		int inverseElement = ::inverse(a,n);
 		if (inverseElement > 0)
 		{
 			std::cout << "iverse " << a << " " << n << std::endl;
@@ -190,4 +191,41 @@ namespace tests
 		std::cout << ::expmod(2342, 6762, 9343) << std::endl;
 	}
 
+
+	void 		bigIntToInt()
+	{
+		// little endian
+		unsigned char first[] 	= {0,1,2,3,4,5,6,7,8,9};
+		::bigInt a = {.sign = true, .size = sizeof(first) / sizeof(first[0]), .arr = first};
+		uint64_t result = ::bigIntToInt(a);
+		prints::BigInt(a);
+		std::cout << std::endl;
+		std::cout << result << std::endl;
+	}
+
+
+	void 		bigIntRightShift()
+	{
+		unsigned char first[] 	= {0,1,2,3,4,5,6,7,8,9};
+		::bigInt a = {.sign = true, .size = sizeof(first) / sizeof(first[0]), .arr = first};
+		prints::BigInt(a);
+		::bigIntRightShift(a);
+		std::cout << std::endl;
+		prints::BigInt(a);
+	}
+
+
+	void 		bigIntModulus()
+	{
+		unsigned char a[] 	= {0,1,2,3,4,5,6,7,8,9};
+		unsigned char mod[] = {0,0,2,3,4,5,6,7,8,9};
+		::bigInt bigA 	= {.sign = true, .size = sizeof(a) / sizeof(a[0]), .arr = a};
+		::bigInt bigMod = {.sign = true, .size = sizeof(mod) / sizeof(mod[0]), .arr = mod};
+		::bigInt r = ::bigIntMod(bigA, bigMod);
+		prints::BigInt(bigA);	std::cout << std::endl;
+		prints::BigInt(bigMod);	std::cout << std::endl;
+		prints::BigInt(r);		std::cout << std::endl;
+		
+		delete r.arr;
+	}
 }//namespace tests
